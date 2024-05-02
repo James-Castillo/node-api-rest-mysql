@@ -1,18 +1,14 @@
 import { Sequelize } from 'sequelize';
 
-// Obtener los valores de las variables de entorno o establecer valores predeterminados
-const dbName = process.env.DB_NAME || '';
-const dbUser = process.env.DB_USER || '';
-const dbPassword = process.env.DB_PASSWORD || '';
-const dbHost = process.env.DB_HOST || '';
+// Extrae las credenciales de conexión de las variables de entorno
+const DB_NAME = process.env.DB_NAME || 'almacen';
+const DB_USER = process.env.DB_USER || 'root';
+const DB_PASSWORD = process.env.DB_PASSWORD || 'admin123';
+const DB_HOST = process.env.DB_HOST || 'localhost';
 
-// Convertir el puerto de cadena a número
-const dbPort = process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined;
-
-const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
-  host: dbHost,
-  port: dbPort, // Utiliza el puerto convertido a número
-  dialect: 'mysql',
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+    host: DB_HOST,
+    dialect: 'mysql'
 });
 
 export default sequelize;
